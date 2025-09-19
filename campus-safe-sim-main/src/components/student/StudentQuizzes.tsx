@@ -4,44 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { BookOpen, Clock, Trophy, PlayCircle } from "lucide-react";
-import { QuizAssessment } from "@/components/QuizAssessment"; // Import your quiz component
+import { QuizAssessment } from "@/components/QuizAssessment";
 
 export const StudentQuizzes = () => {
   const [showQuiz, setShowQuiz] = useState(false);
 
   const availableQuizzes = [
-    { 
-      title: "Fire Safety Basics", 
-      questions: 15, 
-      duration: "10 mins", 
-      difficulty: "Beginner",
-      completed: false,
-      score: null 
-    },
-    { 
-      title: "Earthquake Response", 
-      questions: 20, 
-      duration: "15 mins", 
-      difficulty: "Intermediate",
-      completed: true,
-      score: 88 
-    },
-    { 
-      title: "First Aid Emergency", 
-      questions: 25, 
-      duration: "20 mins", 
-      difficulty: "Advanced",
-      completed: false,
-      score: null 
-    },
-    { 
-      title: "Chemical Safety", 
-      questions: 18, 
-      duration: "12 mins", 
-      difficulty: "Intermediate",
-      completed: true,
-      score: 92 
-    },
+    { title: "Fire Safety Basics", questions: 15, duration: "10 mins", difficulty: "Beginner", completed: false, score: null },
+    { title: "Earthquake Response", questions: 20, duration: "15 mins", difficulty: "Intermediate", completed: true, score: 88 },
+    { title: "First Aid Emergency", questions: 25, duration: "20 mins", difficulty: "Advanced", completed: false, score: null },
+    { title: "Chemical Safety", questions: 18, duration: "12 mins", difficulty: "Intermediate", completed: true, score: 92 },
   ];
 
   const getDifficultyColor = (difficulty: string) => {
@@ -60,9 +32,8 @@ export const StudentQuizzes = () => {
     return "text-danger";
   };
 
-  // Show QuizAssessment if showQuiz is true
   if (showQuiz) {
-    return <QuizAssessment />;
+    return <QuizAssessment onBack={() => setShowQuiz(false)} />;
   }
 
   return (
@@ -86,9 +57,7 @@ export const StudentQuizzes = () => {
                   </div>
                 </div>
               </div>
-              <Badge className={getDifficultyColor(quiz.difficulty)}>
-                {quiz.difficulty}
-              </Badge>
+              <Badge className={getDifficultyColor(quiz.difficulty)}>{quiz.difficulty}</Badge>
             </div>
 
             {quiz.completed ? (
@@ -100,7 +69,7 @@ export const StudentQuizzes = () => {
                     {quiz.score}%
                   </span>
                 </div>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={() => setShowQuiz(true)}>
                   Retake Quiz
                 </Button>
               </div>
@@ -121,7 +90,6 @@ export const StudentQuizzes = () => {
         ))}
       </div>
 
-      {/* Progress Summary */}
       <div className="p-4 bg-muted rounded-lg">
         <h3 className="font-semibold text-foreground mb-3">Your Progress</h3>
         <div className="grid grid-cols-2 gap-4 mb-3">
