@@ -105,22 +105,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
-          <p className="text-primary-foreground/80">
-            © 2024 CampuR. Built in partnership with NDMA. All rights reserved.
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-primary-foreground/80 hover:text-white transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-primary-foreground/80 hover:text-white transition-colors">
-              Terms of Service
-            </a>
-            <a href="#" className="text-primary-foreground/80 hover:text-white transition-colors">
-              Accessibility
-            </a>
-          </div>
-        </div>
+        
       </div>
     </footer>
   );
