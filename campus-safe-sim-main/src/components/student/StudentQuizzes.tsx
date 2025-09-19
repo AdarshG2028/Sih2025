@@ -42,7 +42,7 @@ export const StudentQuizzes = () => {
         <BookOpen className="w-6 h-6 text-primary" />
         <h2 className="text-2xl font-bold text-foreground">Safety Quizzes</h2>
       </div>
-
+        
       <div className="space-y-4 mb-6">
         {availableQuizzes.map((quiz, index) => (
           <div key={index} className="p-4 border border-border rounded-lg bg-card">
@@ -60,32 +60,35 @@ export const StudentQuizzes = () => {
               <Badge className={getDifficultyColor(quiz.difficulty)}>{quiz.difficulty}</Badge>
             </div>
 
-            {quiz.completed ? (
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Trophy className="w-5 h-5 text-warning" />
-                  <span className="text-sm text-muted-foreground">Completed</span>
-                  <span className={`font-bold ${getScoreColor(quiz.score)}`}>
-                    {quiz.score}%
-                  </span>
+            <div className="flex items-center justify-between gap-2">
+              <Button
+                size="sm"
+                className="bg-primary hover:bg-primary/90"
+                onClick={() => setShowQuiz(true)}
+              >
+                <PlayCircle className="w-4 h-4 mr-2" />
+                Take Quiz
+              </Button>
+
+              {quiz.title === "Earthquake Response" && (
+                <div className="flex gap-2">
+                  <Button
+                    size="sm"
+                    variant="secondary"
+                    onClick={() => window.open("https://earthquake-guard-5139d666.base44.app/Game", "_blank")}
+                  >
+                    Simulation 1
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="secondary"
+                    onClick={() => window.open("https://shake-safe-kids-70b09786.base44.app", "_blank")}
+                  >
+                    Simulation 2
+                  </Button>
                 </div>
-                <Button variant="outline" size="sm" onClick={() => setShowQuiz(true)}>
-                  Retake Quiz
-                </Button>
-              </div>
-            ) : (
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Ready to start</span>
-                <Button
-                  size="sm"
-                  className="bg-primary hover:bg-primary/90"
-                  onClick={() => setShowQuiz(true)}
-                >
-                  <PlayCircle className="w-4 h-4 mr-2" />
-                  Start Quiz
-                </Button>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         ))}
       </div>
